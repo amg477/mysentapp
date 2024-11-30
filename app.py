@@ -42,7 +42,7 @@ logreg.fit(x_train, y_train)
 
 st.markdown("Welcome to my app!")
 
-st.markdown("Please provide the follwing information by selecting your answers t0 help analyze social media usage.")
+st.markdown("Please provide your personal details below to predict your usage of LinkedIn:")
 
 st.subheader("Do you ever use LinkedIn?")
 sm_li = st.selectbox(
@@ -125,7 +125,12 @@ def sent_app(user_data):
 
     user_data = pd.DataFrame([user_data], columns=['income', 'educ2', 'parent','married', 'female', 'age'])
 
-    probability = logreg.predict_proba(user_data)[0][1] 
+    probability = logreg.predict_proba(user_data)[0][1]
+    classification = logreg.predict(user_data)[0]
+    
+    st.subheader("Results:")
+    st.write(f"**Classification:** You are {'a LinkedIn user' if classification == 1 else 'not a LinkedIn user'}.")
+    st.write(f"**Probability:** There is a {probability * 100:.2f}% chance that you are a LinkedIn user.")
 
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
@@ -150,4 +155,3 @@ if st.button("Submit"):
         'age': age
     }
     sent_app(user_data)
-
