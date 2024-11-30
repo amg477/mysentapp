@@ -119,7 +119,7 @@ female = st.radio(
     format_func=lambda x: x[1]
 )[0]
 
-age = st.number_input("Enter your age:", min_value=1, max_value=100, step=1)
+age = st.number_input("Enter your age:", min_value=16, max_value=100, step=1)
 
 def sent_app(user_data):
 
@@ -136,6 +136,7 @@ def sent_app(user_data):
         mode="gauge+number",
         value=probability * 100, 
         title={'text': f"LinkedIn User Probability: {probability * 100:.2f}%"},
+        number={"suffix": "%"},
         gauge={
             "axis": {"range": [0, 100]},
             "steps": [
