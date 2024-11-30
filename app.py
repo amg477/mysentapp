@@ -119,7 +119,7 @@ female = st.radio(
     format_func=lambda x: x[1]
 )[0]
 
-age = st.number_input("Enter your age:", min_value=16, max_value=100, step=1)
+age = st.number_input("Enter your age:", "")
 
 def sent_app(user_data):
 
